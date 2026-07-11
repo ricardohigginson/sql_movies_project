@@ -16,8 +16,6 @@ The analysis combines IMDb title data, IMDb ratings, TMDB financial data, and Os
 
 - Higher budgets are associated with higher median revenue, but budget alone does not guarantee strong ROI.
 - Oscar-winning movies tend to have higher ratings than non-winning movies.
-- Adventure, Animation, Fantasy, and Sci-Fi perform strongly by median revenue.
-- Runtime has a weak positive relationship with rating.
 - Some Oscar-recognised directors combine repeated nominations with strong revenue performance.
 
 ## Data Sources
@@ -38,17 +36,25 @@ Join keys:
 ## Project Structure
 
 ```text
-sql_movies_project/
-|-- README.md
-|-- eda.ipynb
-|-- full_data.csv
+sql_project/
+|-- data_cleaning.ipynb
+|-- low_budget_movies.ipynb
+|-- low_budget_movies.sql
+|-- oscars.ipynb
+|-- oscars.sql
+|-- ERD.png
 |-- ERD.mwb
-|-- .gitignore
-`-- output/
-    |-- movies_base.csv
-    |-- ratings.csv
-    |-- oscars_2.csv
-    `-- tmdb.csv
+|-- full_data.csv
+|-- title_basics.tsv
+|-- title.ratings.tsv
+|-- TMDB_movie_dataset_v11.csv
+|-- README.md
+|-- full_data.csv
+|-- output/
+|   |-- movies_base.csv
+|   |-- ratings.csv
+|   |-- oscars_2.csv
+|   |-- tmdb.csv
 ```
 
 ## Notebook Workflow
@@ -60,9 +66,10 @@ It performs the following steps:
 1. Loads raw IMDb, TMDB, and Oscar datasets.
 2. Cleans text fields by removing accents, quotes, and embedded line breaks.
 3. Exports cleaned CSV files into `output/`.
-4. Joins movies, ratings, TMDB financials, and Oscar data.
-5. Builds visual and statistical analysis for each research question.
-6. Summarises the project conclusions and limitations.
+4. Use the output files to create a dataset in MySql Workbench
+5. Write and run queries to obtain insights
+6. Builds visual and statistical analysis for each research question.
+7. Summarises the project conclusions and limitations.
 
 ## How to Run
 
@@ -81,7 +88,7 @@ full_data.csv
 
 Then open and run:
 
-jupyter notebook eda.ipynb
+jupyter notebook data_cleaning.ipynb
 
 The notebook writes cleaned intermediate files to `output/`.
 
@@ -91,6 +98,16 @@ The notebook writes cleaned intermediate files to `output/`.
 - `output/ratings.csv` - cleaned IMDb ratings.
 - `output/oscars_2.csv` - cleaned Oscar data.
 - `output/tmdb.csv` - cleaned TMDB data.
+
+## Querying
+Create a dataset on mysql workbench using the import wizzard function making sure the files are called as follow:
+
+- movies_base --> movies_base
+- ratings     --> ratings
+- oscars_2    --> oscars
+- tmdb        --> tmdb
+
+Then run low_budget_movies.sql and oscars.sql to get different tables as outcome of the queries.
 
 ## Caveats
 
