@@ -100,7 +100,8 @@ The notebook writes cleaned intermediate files to `output/`.
 - `output/tmdb.csv` - cleaned TMDB data.
 
 ## Querying
-Create a dataset on mysql workbench using the import wizzard function making sure the files are called as follow:
+
+Create a schema on mysql workbench called "movies" using the import wizzard function making sure the files are called as follow:
 
 - movies_base --> movies_base
 - ratings     --> ratings
